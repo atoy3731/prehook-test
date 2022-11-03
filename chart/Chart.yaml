@@ -1,6 +1,6 @@
 apiVersion: v2
 name: prehook-test
-description: This is a Prehook Test. If it fails, check the 'prehook-pod' etc.
+description: This is a Prehook Test
 
 # A chart can be either an 'application' or a 'library' chart.
 #
