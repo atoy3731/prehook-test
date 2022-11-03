@@ -1,7 +1,4 @@
 # Prehook Test
-
-Prehook Test for Rancher. Be sure to install the prerequisite charts below from the Rancher app store.
-
 ## Prereqs
 
 The following prerequisites can be accessed/installed through the Rancher app catalog.
