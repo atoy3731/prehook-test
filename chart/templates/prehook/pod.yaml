@@ -40,18 +40,18 @@ spec:
             exit 1
         fi
 
-        # Checks if STIGATRON alerting is enabled
-        if [[ "$ALERTING_ENABLED" == "true" ]]; then
-            # Check status of Rancher Monitoring
-            if [[ $(helm status -n cattle-monitoring-system rancher-monitoring -o json | jq -r '.info.status') != "deployed" ]]; then
-                echo "ERROR: Alerting enabled but missing Rancher Monitoring dependency. Please install it prior to STIGATRON."
-                exit 1
-            # Check alert status of CIS benchmark
-            elif [[ $(helm get values -n cis-operator-system rancher-cis-benchmark -o json | jq -r '.alerts.enabled') != "true" ]]; then
-                echo "ERROR: Alerting enabled but CIS Benchmark does not have '.alerts.enabled' set to true. Please update."
-                exit 1
-            fi
+        {{ if .Values.alert.enabled }}
+        # Check status of Rancher Monitoring
+        if [[ $(helm status -n cattle-monitoring-system rancher-monitoring -o json | jq -r '.info.status') != "deployed" ]]; then
+            echo "ERROR: Alerting enabled but missing Rancher Monitoring dependency. Please install it prior to STIGATRON."
+            exit 1
+        # Check alert status of CIS benchmark
+        elif [[ $(helm get values -n cis-operator-system rancher-cis-benchmark -o json | jq -r '.alerts.enabled') != "true" ]]; then
+            echo "ERROR: Alerting enabled but CIS Benchmark does not have '.alerts.enabled' set to true. Please update."
+            exit 1
         fi
+        {{- end }}
+        
         {{- else }}
         exit 0
         {{- end }}
