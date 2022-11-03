@@ -1,8 +1,3 @@
-# Test
+# Prehook Check
 
-Testing this out
-
-This is a test
-- Test
-- Foo
-- Bar
+Standard README for a Helm Chart
